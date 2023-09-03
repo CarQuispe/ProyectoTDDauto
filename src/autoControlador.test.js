@@ -1,4 +1,5 @@
 import createGrid from "./autoControlador.js";
+import { crearCarro } from "./carro.js";
 
 describe("crear grit de  posiscion", () => {
     it("Deberia crear la matriz ", ()=>{
@@ -12,8 +13,19 @@ describe("crear grit de  posiscion", () => {
         ]);
 
     })
-   
+
+      
 });
+//const crearCarro = require("./carro.js");
+describe('Crear un auto', () => {
+  it('debería crear un auto con posición inicial', () => {
+    const car = crearCarro(1, 2, 'N');
+    expect(car.x).toBe(1);
+    expect(car.y).toBe(2);
+    expect(car.direccion).toBe('N'); 
+  });
+});
+
 
 
   

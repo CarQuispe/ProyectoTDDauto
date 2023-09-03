@@ -1,13 +1,16 @@
 <html>
   <body>
     <h1>controlador de auto</h1>
-     <form id="Controlador-form">
-      <label for="Comandos">Comandos :</label>
-      <input type="text" id="Cadena" />
-      <button type="submit" id="Ejecutar-button">Ejecutar</button>
+    <form id="car-form">
+      <label for="posicion">Posición del Carro (ejemplo: 1,2 N):</label>
+      <input type="text" id="posicion" name="posicion">
+      <input type="submit" value="Mover Carro">
     </form>
-    <h1>Grid Creator</h1>
-    <div id="grid-div"></div>
+    
+    <div id="grid-div">
+      
+    </div>
+    
     <script type="module" src="./src/presenter.js"></script>
   </body>
 </html>
