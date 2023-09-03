@@ -24,6 +24,13 @@ describe('Crear un auto', () => {
     expect(car.y).toBe(2);
     expect(car.direccion).toBe('N'); 
   });
+
+  it('debería crear un auto con posición inicial y señalando Norte', () => {
+    const car = crearCarro(1, 2, 'N');
+    expect(car.x).toBe(1);
+    expect(car.y).toBe(2);
+    expect(car.direccion).toBe('N'); 
+  });
 });
 
 
