@@ -1,15 +1,17 @@
-import sumar from "./sumador";
+import createGrid from "./autoControlador.js";
 
-const first = document.querySelector("#primer-numero");
-const second = document.querySelector("#segundo-numero");
-const form = document.querySelector("#sumar-form");
-const div = document.querySelector("#resultado-div");
+function renderGrid(grid) {
+  const gridDiv = document.querySelector("#grid-div");
 
-form.addEventListener("submit", (event) => {
-  event.preventDefault();
+  gridDiv.innerHTML = "<table>";
+  for (let i = 0; i < grid.length; i++) {
+    gridDiv.innerHTML += "<tr>";
+    for (let j = 0; j < grid[i].length; j++) {
+      gridDiv.innerHTML += `<td>${grid[i][j]}</td>`;
+    }
+    gridDiv.innerHTML += "</tr>";
+  }
+  gridDiv.innerHTML += "</table>";
+}
 
-  const firstNumber = Number.parseInt(first.value);
-  const secondNumber = Number.parseInt(second.value);
-
-  div.innerHTML = "<p>" + sumar(firstNumber, secondNumber) + "</p>";
-});
+export default renderGrid;
