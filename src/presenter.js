@@ -16,9 +16,9 @@ function renderGrid(car) {
 
   // Crea una tabla para mostrar el grid
   const table = document.createElement("table");
-  for (let i = 0; i < 5; i++) { // Tamaño de ejemplo (5x5), puedes ajustarlo según tu necesidad
+  for (let i = 0; i <= 5; i++) { // Tamaño de ejemplo (5x5), puedes ajustarlo según tu necesidad
     const row = document.createElement("tr");
-    for (let j = 0; j < 5; j++) { // Tamaño de ejemplo (5x5), puedes ajustarlo según tu necesidad
+    for (let j = 0; j <= 5; j++) { // Tamaño de ejemplo (5x5), puedes ajustarlo según tu necesidad
       const cell = document.createElement("td");
       
       // Marca la posición del carro en el grid si coincide con x e y

@@ -4,7 +4,7 @@ export class Carro { // Cambio en la exportación
   constructor(x, y, direccion) {
     this.x = x;
     this.y = y;
-
+    this.grid = createGrid(5, 5);
     if (direccion == 'E' || direccion == 'O' || direccion == 'N' || direccion == 'S') {
       this.direccion = direccion;
     } else {
@@ -49,8 +49,18 @@ export class Carro { // Cambio en la exportación
       this.x--;
     }
   }
+
+   // Función para colocar el auto en la matriz
+   colocarEnMatriz() {
+    if (this.x >= 0 && this.x < this.grid.length && this.y >= 0 && this.y < this.grid[0].length) {
+      this.grid[this.x][this.y] = 'A'; // 'A' representa la posición del auto en la matriz
+    }
+  }
+
+  // Función para mover el auto en la matriz
+  moverEnMatriz() {
+    this.grid[this.x][this.y] = 0; // Borrar la posición anterior del auto en la matriz
+  }
+
 }
-
-
-
 

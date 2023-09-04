@@ -67,6 +67,16 @@ describe("Girar el auto", () => {
   });
 });
 
+describe("Girar el auto y avanzar un paso", () => {
+  it("Debería girar a la izquierda y avanzar (1,2 N /IA)", () => {
+    const car = new Carro(1, 2, 'N'); // Crear un auto en posición (1, 2) mirando al norte
+    car.girarIzquierda();// Función para girar el auto hacia la izquierda
+    car.moveForward(); //avanzar una posicion 
+    expect(car.getPosicion()).toEqual("0,2 O");
+  });
+
+});
+
     
 
 
