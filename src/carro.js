@@ -23,7 +23,17 @@ export class Carro { // Cambio en la exportación
       this.direccion = "N";
     }
   }
- 
+  girarDerecha() {
+    if (this.direccion === "N") {
+      this.direccion = "E";
+    } else if (this.direccion === "E") {
+      this.direccion = "S";
+    } else if (this.direccion === "S") {
+      this.direccion = "O";
+    } else if (this.direccion === "O") {
+      this.direccion = "N";
+    }
+  }
   getPosicion() {
     return `${this.x},${this.y} ${this.direccion}`;
   }
