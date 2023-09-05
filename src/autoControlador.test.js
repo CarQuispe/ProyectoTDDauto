@@ -1,20 +1,17 @@
 import createGrid from "./autoControlador.js";
 import { Carro } from "./carro.js";
 
-describe("crear grit de  posiscion", () => {
-    it("Deberia crear la matriz ", ()=>{
-        const grid = createGrid(5, 5);
-        expect(grid).toEqual([
-          [0, 0], [0, 1], [0, 2], [0, 3], [0, 4],
-          [1, 0], [1, 1], [1, 2], [1, 3], [1, 4],
-          [2, 0], [2, 1], [2, 2], [2, 3], [2, 4],
-          [3, 0], [3, 1], [3, 2], [3, 3], [3, 4],
-          [4, 0], [4, 1], [4, 2], [4, 3], [4, 4],
-        ]);
-
-    })
-
-      
+describe("crear grid de posición", () => {
+  it("Debería crear la matriz", () => {
+    const grid = createGrid(5, 5);
+    expect(grid.length).toBe(5); // Verifica que haya 5 filas
+    grid.forEach((row) => {
+      expect(row.length).toBe(5); // Verifica que cada fila tenga 5 columnas
+      row.forEach((cell) => {
+        expect(cell).toBe(0); // Verifica que cada celda tenga el valor 0
+      });
+    });
+  });
 });
 
 //const crearCarro = require("./carro.js");
@@ -74,6 +71,14 @@ describe("Girar el auto y avanzar un paso", () => {
     car.moveForward(); //avanzar una posicion 
     expect(car.getPosicion()).toEqual("0,2 O");
   });
+  it("Debería colocar el auto en la matriz correctamente", () => {
+    const grid = createGrid(5, 5); // Crea una matriz de 5x5
+    const car = new Carro(1, 1, "N", grid); // Pasa la matriz como argumento al carro
+    car.colocarEnMatriz();
+    // Verifica que la celda correspondiente en la matriz tenga el valor 'A' después de colocar el auto
+    expect(grid[1][1]).toBe("A");
+  });
+  
 
 });
 
