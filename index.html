@@ -1,14 +1,23 @@
-<html>
-  <body>
-    <h1>controlador de auto</h1>
-    <form id="car-form">
-      <label for="posicion">Comandos (ejemplo: 1,2 N/IA/IA/IA):</label>
-      <input type="text" id="posicion" required >
-      <button type="submit">Ejecutar</button>
-      
-    </form>
-    <div id="grid-div"> </div>
-    
-    <script type="module" src="./src/presenter.js"></script>
-  </body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Controlador de Auto</title>
+</head>
+<body>
+  <h1>Controlador de Auto</h1>
+  <form id="car-form">
+    <label for="posicion">Comandos (ejemplo: 1,2 N/IA/IA/IA):</label>
+    <input type="text" id="posicion" required>
+    <button type="submit">Ejecutar</button>
+  </form>
+  <div id="grid-div"></div>
+  <script type="module" src="./src/presenter.js"></script>
+  <p id="posicion-inicial">Posicion inicial</p>
+  <p id="comandos">Comandos</p>
+  <p id="posicion-final">Posición final: </p>
+  
+</body>
 </html>
+

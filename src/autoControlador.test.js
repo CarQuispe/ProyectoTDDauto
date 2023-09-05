@@ -65,7 +65,7 @@ describe("Girar el auto", () => {
 });
 
 describe("Girar el auto y avanzar un paso", () => {
-  it("Debería girar a la izquierda y avanzar (1,2 N /IA)", () => {
+  it("Debería girar a la izquierda y avanzar ( 5,5/1,2N/IAIAIAIAA)", () => {
     const car = new Carro(1, 2, 'N'); // Crear un auto en posición (1, 2) mirando al norte
     car.girarIzquierda();// Función para girar el auto hacia la izquierda
     car.moveForward(); //avanzar una posicion 
@@ -79,8 +79,16 @@ describe("Girar el auto y avanzar un paso", () => {
     expect(grid[1][1]).toBe("A");
   });
   
-
+  it("Debería mover el auto en la matriz correctamente", () => {
+    const grid = createGrid(5, 5); // Crea una matriz de 5x5
+    const car = new Carro(1, 1, "N", grid); // Pasa la matriz como argumento al carro
+    car.moverEnMatriz();
+    // Verifica que la celda correspondiente en la matriz tenga el valor 0 después de mover el auto
+    expect(grid[1][1]).toBe(0);
+  });
 });
+
+
 
     
 

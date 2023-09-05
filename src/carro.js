@@ -1,21 +1,5 @@
 import createGrid from "./autoControlador.js";
 
-// Función para analizar la posición inicial del carro
-function parsePosicionInicial(posicionInicial) {
-  const partes = posicionInicial.split(" ");
-  if (partes.length !== 2) {
-    throw new Error("Formato de posición inicial incorrecto.");
-  }
-  const [x, y] = partes[0].split(",").map(Number);
-  const direccion = partes[1];
-
-  if (!["N", "S", "E", "O"].includes(direccion)) {
-    throw new Error("Dirección no válida. Debe ser N, S, E u O.");
-  }
-
-  return [x, y, direccion];
-}
-
 export class Carro {
   constructor(x, y, direccion) {
     this.x = x;
@@ -27,7 +11,23 @@ export class Carro {
       throw new Error('Dirección no válida. Debe ser E, O, N o S.');
     }
   }
+  static parsePosicionInicial(posicionInicial) {
+    const partes = posicionInicial.split("/");
+    if (partes.length !== 2) {
+      throw new Error("Formato de posición inicial incorrecto.");
+    }
+    const [x, y, direccion] = partes[0].split(",").map((value, index) => {
+      if (index === 2) {
+        if (!["N", "S", "E", "O"].includes(value)) {
+          throw new Error("Dirección no válida. Debe ser N, S, E u O.");
+        }
+        return value;
+      }
+      return parseInt(value, 10);
+    });
 
+    return [x, y, direccion];
+  }
   girarIzquierda() {
     if (this.direccion === "N") {
       this.direccion = "O";
