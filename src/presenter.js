@@ -1,6 +1,5 @@
 import createGrid from "./autoControlador.js";
-import { crearCarro } from "./carro.js";
-
+import { Carro } from "./carro.js";
 
 // Obtén el formulario y el div donde se muestra el grid
 const carForm = document.querySelector("#car-form");
@@ -16,16 +15,17 @@ function renderGrid(car) {
 
   // Crea una tabla para mostrar el grid
   const table = document.createElement("table");
-  for (let i = 0; i <= 5; i++) { // Tamaño de ejemplo (5x5), puedes ajustarlo según tu necesidad
+  const gridSize = 5; // Tamaño de la matriz
+  for (let i = 0; i < gridSize; i++) {
     const row = document.createElement("tr");
-    for (let j = 0; j <= 5; j++) { // Tamaño de ejemplo (5x5), puedes ajustarlo según tu necesidad
+    for (let j = 0; j < gridSize; j++) {
       const cell = document.createElement("td");
-      
+
       // Marca la posición del carro en el grid si coincide con x e y
       if (i === y && j === x) {
         cell.textContent = direccion; // Muestra la dirección del carro en la posición
       }
-      
+
       row.appendChild(cell);
     }
     table.appendChild(row);
@@ -44,9 +44,24 @@ carForm.addEventListener("submit", function (event) {
   const posicion = posicionInput.value;
 
   try {
-    // Crea un objeto Carro con la posición ingresada
-    const [x, y, direccion] = parsePosicion(posicion); // Implementa la función parsePosicion
-    const car = crearCarro(x, y, direccion);
+    // Separa las instrucciones del formato dado
+    const [tamano, posicionInicial, instrucciones] = parsePosicion(posicion);
+    const [gridSizeX, gridSizeY] = tamano.split(",").map(Number);
+
+    // Crea un objeto Carro con la posición inicial
+    const [x, y, direccionInicial] = parsePosicionInicial(posicionInicial);
+    const car = new Carro(x, y, direccionInicial);
+
+    // Ejecuta las instrucciones en el carro
+    for (const instruccion of instrucciones) {
+      if (instruccion === "A") {
+        car.moveForward();
+      } else if (instruccion === "I") {
+        car.girarIzquierda();
+      } else if (instruccion === "D") {
+        car.girarDerecha();
+      }
+    }
 
     // Actualiza el grid con la nueva posición del carro
     renderGrid(car);
@@ -59,13 +74,26 @@ carForm.addEventListener("submit", function (event) {
 
 // Función para analizar la posición ingresada por el usuario
 function parsePosicion(posicion) {
-  // Implementa la lógica para analizar la posición y separar x, y y dirección
-  // Ejemplo: "1,2 N" -> [1, 2, "N"]
-  const partes = posicion.split(" ");
-  if (partes.length !== 2) {
+  const partes = posicion.split("/");
+  if (partes.length !== 3) {
     throw new Error("Formato de posición incorrecto.");
+  }
+  return partes;
+}
+
+// Función para analizar la posición inicial del carro
+function parsePosicionInicial(posicionInicial) {
+  const partes = posicionInicial.split(" ");
+  if (partes.length !== 2) {
+    throw new Error("Formato de posición inicial incorrecto.");
   }
   const [x, y] = partes[0].split(",").map(Number);
   const direccion = partes[1];
+
+  if (!["N", "S", "E", "O"].includes(direccion)) {
+    throw new Error("Dirección no válida. Debe ser N, S, E u O.");
+  }
+
   return [x, y, direccion];
 }
+

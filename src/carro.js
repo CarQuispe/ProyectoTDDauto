@@ -1,6 +1,22 @@
 import createGrid from "./autoControlador.js";
 
-export class Carro { // Cambio en la exportación
+// Función para analizar la posición inicial del carro
+function parsePosicionInicial(posicionInicial) {
+  const partes = posicionInicial.split(" ");
+  if (partes.length !== 2) {
+    throw new Error("Formato de posición inicial incorrecto.");
+  }
+  const [x, y] = partes[0].split(",").map(Number);
+  const direccion = partes[1];
+
+  if (!["N", "S", "E", "O"].includes(direccion)) {
+    throw new Error("Dirección no válida. Debe ser N, S, E u O.");
+  }
+
+  return [x, y, direccion];
+}
+
+export class Carro {
   constructor(x, y, direccion) {
     this.x = x;
     this.y = y;
@@ -23,6 +39,7 @@ export class Carro { // Cambio en la exportación
       this.direccion = "N";
     }
   }
+
   girarDerecha() {
     if (this.direccion === "N") {
       this.direccion = "E";
@@ -34,6 +51,7 @@ export class Carro { // Cambio en la exportación
       this.direccion = "N";
     }
   }
+
   getPosicion() {
     return `${this.x},${this.y} ${this.direccion}`;
   }
@@ -50,8 +68,8 @@ export class Carro { // Cambio en la exportación
     }
   }
 
-   // Función para colocar el auto en la matriz
-   colocarEnMatriz() {
+  // Función para colocar el auto en la matriz
+  colocarEnMatriz() {
     if (this.x >= 0 && this.x < this.grid.length && this.y >= 0 && this.y < this.grid[0].length) {
       this.grid[this.x][this.y] = 'A'; // 'A' representa la posición del auto en la matriz
     }
@@ -61,6 +79,4 @@ export class Carro { // Cambio en la exportación
   moverEnMatriz() {
     this.grid[this.x][this.y] = 0; // Borrar la posición anterior del auto en la matriz
   }
-
 }
-

@@ -2,14 +2,12 @@
   <body>
     <h1>controlador de auto</h1>
     <form id="car-form">
-      <label for="posicion">Posición del Carro (ejemplo: 1,2 N):</label>
-      <input type="text" id="posicion" name="posicion">
-      <input type="submit" value="Mover Carro">
-    </form>
-    
-    <div id="grid-div">
+      <label for="posicion">Comandos (ejemplo: 1,2 N/IA/IA/IA):</label>
+      <input type="text" id="posicion" required >
+      <button type="submit">Ejecutar</button>
       
-    </div>
+    </form>
+    <div id="grid-div"> </div>
     
     <script type="module" src="./src/presenter.js"></script>
   </body>
